@@ -1,6 +1,4 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import Search from "./components/Search.vue";
 import Content from "./components/Content.vue";
 import Tool from "./components/Tool.vue";
 import { useContentStore } from './stores/ContentStore'
@@ -15,9 +13,6 @@ let styleStore = useStyleStore();
 let height = ref(500)
 
 onMounted(() => {
-
-  // QueryAllConfig()
-
   QueryAllContent().then(result => contentStore.setData(result))
   QueryAllConfig().then(result => {
     styleStore.setConfig(result)
@@ -32,8 +27,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <!--  <img id="logo" alt="Wails logo" src="./assets/images/logo-universal.png"/>-->
-  <!--  <HelloWorld/>-->
   <div class="periphery">
     <div class="container">
       <Content style="width: 90%" :style="{ height: height + 'px' }" :height="height"/>

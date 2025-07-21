@@ -1,41 +1,29 @@
 <template>
-<!--  <main>-->
-    <div style="background-color: aqua" >
-
-      <Search v-model:model-value="inputValue" v-model:change-func="copy"/>
-<!--      <h1 style="color: red; background: yellow; padding: 10px;">我是内容</h1>-->
-
-<!--        <div v-for="(item, index) in items" :key="item.id">-->
-<!--          <div class="itme" @dblclick="copy(item.name)">-->
-<!--            {{index + 1}}  {{ item.id }} - {{ item.name }}-->
-<!--          </div>-->
-<!--        </div>-->
-      <div class="option">
-        <div v-for="(item, index) in valueTypeEnum" @click="getContentByType(item.value)">
-          <span>{{item.label}}</span>
-        </div>
+  <div style="background-color: aqua" >
+    <Search v-model:model-value="inputValue" v-model:change-func="copy"/>
+    <div class="option">
+      <div v-for="(item, index) in valueTypeEnum" @click="getContentByType(item.value)">
+        <span>{{item.label}}</span>
       </div>
-      <div :style="{height: (height - 50 - 38 - 10) + 'px' }" class="slide">
-        <div v-for="(item, index) in contentStore.profile.data">
-          <div class="itme" @dblclick="copy(item.value)">
-            {{index + 1}}  {{ item.type }} - {{ item.value }}
-          </div>
-          <div class="delete" @click="deleteItem(item.value)">
-            DEL
-          </div>
+    </div>
+    <div :style="{height: (height - 50 - 38 - 10) + 'px' }" class="slide">
+      <div v-for="(item, index) in contentStore.profile.data">
+        <div class="itme" @dblclick="copy(item.value)">
+          {{index + 1}}  {{ item.type }} - {{ item.value }}
+        </div>
+        <div class="delete" @click="deleteItem(item.value)">
+          DEL
         </div>
       </div>
     </div>
-
-<!--  </main>-->
+  </div>
 </template>
 
 <script setup>
-import {reactive, onMounted, ref} from 'vue'
+import { onMounted, ref} from 'vue'
 import { useContentStore } from '../stores/ContentStore'
 import { QueryAllValueTypeEnum } from "../../wailsjs/go/controller/EnumController";
 import {
-  QueryContentByType,
   QueryAllContent,
   QueryContentByCondition,
   DeleteContentByPrimary
@@ -80,17 +68,6 @@ function getContentByType(type) {
   console.log(inputValue)
 
   getContentByCondition(type, inputValue.value)
-
-  // if (inputValue.value === '' && type === ValueType.PICTURE) {
-  //   alert("图片不支持搜索!")
-  // }
-  //
-  // console.log(type)
-  // if (type === -1) {
-  //   QueryAllContent().then(result => contentStore.setData(result))
-  // } else {
-  //   QueryContentByType(type).then(result => contentStore.setData(result))
-  // }
 }
 
 function getContentByCondition(type, value) {

@@ -21,16 +21,18 @@ func main() {
 	applicationConfigContext := app.GetApplicationConfigContext()
 
 	// Create application with options
+	width := applicationConfigContext.WindowConfig.Width
+	height := applicationConfigContext.WindowConfig.Height
 	err := wails.Run(&options.App{
 		Title: "cat-clipboard",
 		//Width:  1024,
 		//Height: 768,
-		Width:     applicationConfigContext.WindowConfig.Width,
-		Height:    applicationConfigContext.WindowConfig.Height,
-		MaxHeight: applicationConfigContext.WindowConfig.Height,
-		MaxWidth:  applicationConfigContext.WindowConfig.Width,
-		MinHeight: applicationConfigContext.WindowConfig.Height,
-		MinWidth:  applicationConfigContext.WindowConfig.Width,
+		Width:     width,
+		MaxWidth:  width,
+		MinWidth:  width,
+		Height:    height,
+		MaxHeight: height,
+		MinHeight: height,
 
 		AssetServer: &assetserver.Options{
 			Assets: assets,
